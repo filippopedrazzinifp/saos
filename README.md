@@ -46,9 +46,7 @@ docker-compose up --build -d
 
 You can check a working web app at https://app-tlria.joandko.io
 
-<video src="./assets/saos.mp4" width=auto/>
-
-![demo](./assets/saos.gif)
+https://user-images.githubusercontent.com/29598954/218555464-7069a56b-8028-48f6-ae55-f488b2df543e.mp4
 
 ## License
 
