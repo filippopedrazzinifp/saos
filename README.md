@@ -1,1 +1,1 @@
-# streamlit-auth-openai-stripe
+# Streamlit Auth Openai Stripe
