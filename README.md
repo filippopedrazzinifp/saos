@@ -42,8 +42,14 @@ preauthorized:
 docker-compose up --build -d
 ```
 
-### Demo
+## Demo
 
 You can check a working web app at https://app-tlria.joandko.io
 
 <video src="./assets/saos.mp4" width=auto/>
+
+![demo](./assets/saos.gif)
+
+## License
+
+This project is licensed under the MIT License.
