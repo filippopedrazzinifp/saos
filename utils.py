@@ -1,27 +1,21 @@
 import os
-import yaml
-import stripe
-import time
 import random
-import requests
-import redis
 
+import requests
 import streamlit as st
 import streamlit_authenticator as stauth
-
-from PyPDF2 import PdfReader
+import stripe
+import yaml
 from bs4 import BeautifulSoup
+from PyPDF2 import PdfReader
 
 AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36",
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gecko/20100101 Firefox/106.0",]
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gecko/20100101 Firefox/106.0",
+]
 
 stripe.api_key = os.environ.get("STRIPE_SECRET_KEY")
-
-
-def get_redis_client():
-    return redis.Redis(host='localhost', port=6379, db=0)
 
 
 def get_config():
@@ -37,7 +31,7 @@ def get_authenticator():
         config["cookie"]["name"],
         config["cookie"]["key"],
         config["cookie"]["expiry_days"],
-        config["preauthorized"]
+        config["preauthorized"],
     )
     return authenticator, config
 
@@ -63,7 +57,8 @@ def get_text_from_url(url):
     response = requests.get(url, headers={"User-Agent": agent, "Connection": "close"})
     soup = BeautifulSoup(response.text, "html.parser")
     elements = [
-        element.text for element in soup.find_all(["h1", "h2", "h3", "p"])
+        element.text
+        for element in soup.find_all(["h1", "h2", "h3", "p"])
         if len(element.text) > 5
     ]
     return "\n\n".join(elements)[:6000].strip().replace("\n", " ")
@@ -76,16 +71,24 @@ def auth_layer(page):
 
     if authentication_status is None:
         st.warning("Please Enter your Username and Password")
-        st.write(f"Dont have an account? Register here {os.environ['CUSTOM_DOMAIN']}/SignUp")
+        st.write(
+            f"Dont have an account? Register here {os.environ['CUSTOM_DOMAIN']}/SignUp"
+        )
     if authentication_status is False:
         st.error("Username/password is Incorrect")
     elif authentication_status:
         email = config["credentials"]["usernames"][username]["email"]
         if check_subscription(email) is False:
             st.title("Welcome to TLRIA")
-            st.write("In order to use TLRIA, you need to subscribe to our service. Please click on the button below to subscribe.")
-            st.warning("Please note that you will be redirected to a third party website.")
+            st.write(
+                "In order to use TLRIA, you need to subscribe to our service. Please click on the button below to subscribe."  # noqa E501
+            )
+            st.warning(
+                "Please note that you will be redirected to a third party website."
+            )
             st.write(f"You can subscribe here: {os.environ['STRIPE_PAYMENT_URL']}")
-            st.warning("Make sure you provide the same email address you used to register to TLRIA.")
+            st.warning(
+                "Make sure you provide the same email address you used to register to TLRIA."
+            )
         else:
             page()

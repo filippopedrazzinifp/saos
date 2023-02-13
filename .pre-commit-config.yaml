@@ -1,4 +1,4 @@
-exclude: ""
+exclude: "^docs/|/migrations/"
 default_stages: [commit]
 
 repos:

@@ -36,6 +36,10 @@ preauthorized:
 
 > In order to handle authentication, we are using streamlit-authenticator package. Please refer to this link in order to create an hashed password: https://github.com/mkhorasani/Streamlit-Authenticator
 
-4. Run the app with `docker-compose` 
+4. Run the app with `docker-compose`
 
     docker-compose up --build -d
+
+### Demo
+
+You can check a working web app at https://app-tlria.joandko.io

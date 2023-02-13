@@ -1,6 +1,5 @@
-import yaml
 import streamlit as st
-import streamlit_authenticator as stauth
+import yaml
 
 from utils import get_authenticator
 
