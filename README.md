@@ -46,4 +46,4 @@ docker-compose up --build -d
 
 You can check a working web app at https://app-tlria.joandko.io
 
-[![Demo](./assets/tlria.mp4)]
+<video src="./assets/tlria.mp4" width=auto/>
