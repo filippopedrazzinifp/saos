@@ -38,8 +38,12 @@ preauthorized:
 
 4. Run the app with `docker-compose`
 
-    docker-compose up --build -d
+```bash
+docker-compose up --build -d
+```
 
 ### Demo
 
 You can check a working web app at https://app-tlria.joandko.io
+
+[![Demo](./assets/tlria.mp4)]
